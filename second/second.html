@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reverse Timer</title>
+</head>
+<body>
+  <h1>Reverse Timer</h1>
+  <div id="timer">10</div>
+  <button id="start">Start</button>
+  <button id="stop">Stop</button>
+  <button id="reset">Reset</button>
+
+  <script>
+    const timer = document.getElementById('timer');
+    const startButton = document.getElementById('start');
+    const stopButton = document.getElementById('stop');
+    const resetButton = document.getElementById('reset');
+
+    let remainingTime = 10;
+    let intervalId;
+
+    const updateTimer = () => {
+      if (remainingTime > 0) {
+        timer.textContent = remainingTime;
+        remainingTime--;
+      } else {
+        clearInterval(intervalId);
+      }
+    };
+
+    startButton.addEventListener('click', () => {
+      intervalId = setInterval(updateTimer, 1000);
+    });
+
+    stopButton.addEventListener('click', () => {
+      clearInterval(intervalId);
+    });
+
+    resetButton.addEventListener('click', () => {
+      clearInterval(intervalId);
+      timer.textContent = '10';
+      remainingTime = 10;
+    });
+  </script>
+</body>
+</html>
